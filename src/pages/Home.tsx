@@ -1,5 +1,5 @@
-import React from "react"
-import { FaUtensils, FaClock, FaFire, FaStar, FaShoppingCart } from 'react-icons/fa'
+import React from 'react'
+import { FaUtensils, FaClock, FaFire, FaStar } from 'react-icons/fa'
 import { Button } from '../components/ui/Button'
 import { Link } from 'react-router-dom'
 
@@ -27,7 +27,6 @@ export const Home: React.FC = () => {
               <Button
                 variant="secondary"
                 size="lg"
-                as={Link}
                 to="/menu"
               >
                 <FaUtensils className="mr-2" />
@@ -104,7 +103,6 @@ export const Home: React.FC = () => {
                     <Button
                       variant="primary"
                       size="sm"
-                      as={Link}
                       to="/menu"
                     >
                       加入點餐
