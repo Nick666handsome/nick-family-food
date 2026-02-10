@@ -1,10 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'danger'
   size?: 'sm' | 'md' | 'lg'
   isLoading?: boolean
   fullWidth?: boolean
+  as?: typeof Link | 'button'
+  to?: string
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -13,6 +16,8 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'md',
   isLoading = false,
   fullWidth = false,
+  as: Component = 'button',
+  to,
   className,
   disabled,
   ...props
@@ -32,9 +37,28 @@ export const Button: React.FC<ButtonProps> = ({
     lg: 'px-8 py-4 text-lg',
   }
 
+  const buttonClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${fullWidth ? 'w-full' : ''} ${isLoading ? 'opacity-50 cursor-wait' : ''} ${className || ''}`
+
+  if (Component === Link && to) {
+    return (
+      <Link
+        to={to}
+        className={buttonClassName}
+        {...props as any}
+      >
+        {isLoading ? (
+          <div className="flex items-center justify-center">
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+            <span>處理中...</span>
+          </div>
+        ) : children}
+      </Link>
+    )
+  }
+
   return (
     <button
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${fullWidth ? 'w-full' : ''} ${isLoading ? 'opacity-50 cursor-wait' : ''} ${className || ''}`}
+      className={buttonClassName}
       disabled={disabled || isLoading}
       {...props}
     >

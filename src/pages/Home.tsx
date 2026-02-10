@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import { FaUtensils, FaClock, FaFire, FaStar, FaShoppingCart } from 'react-icons/fa'
 import { Button } from '../components/ui/Button'
 import { Link } from 'react-router-dom'

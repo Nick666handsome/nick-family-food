@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaShoppingCart, FaUser, FaHome, FaUtensils, FaHistory, FaCog } from 'react-icons/fa'
-import { Button } from '../ui/Button'
 
 export const Navbar: React.FC = () => {
   const location = useLocation()
